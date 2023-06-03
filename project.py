@@ -54,7 +54,7 @@ if option == "Analytical data":
                 'CIVIL ENGINEERING','INSTRUMENTATION AND CONTROL ENGINEERING','ELECTRICAL ENGINEERING',
                 'ENGINEERING EDUCATION', 'TOWN PLANNING','APPLIED SCIENCE',
                 'MANAGEMENT','MASTERS IN BUSINESS ADMINISTRATION'))
-    selected_option = st.selectbox("Select an operation",(' ','Faculty data','Retirement age','Gender count','Department wise gender count','Get email IDs','Search email by name','Count by year of joining'))
+    selected_option = st.selectbox("Select an operation",(' ','Faculty data','Retirement age','Gender count','Department wise gender count','Get email id\'s','Search email by name','Count by year of joining','Faculty in each Department','Doctorate Faculty','Postgraduate Faculty','Appointment-types of Faculty','Designation of Faculty'))
     
     class EntireDataset:
         def __init__(self, df):
@@ -93,6 +93,26 @@ if option == "Analytical data":
             data = entire.date_of_joining(self.df)
             data1 = {"Joined on or after 2000": data[1], "Joined before 2000": data[0]}
             st.table(data1)
+        
+        def faculty_depts(self):
+            dframe=dts2.faculty_dept(self.df)
+            self.display_table_and_download_csv(dframe, 'Faculty_dept.csv')
+        
+        def doctorate_Faculty(self):
+            dframe=dts2.faculty_doctorate(self.df)
+            self.display_table_and_download_csv(dframe, 'Doctorate_Faculty.csv')
+        
+        def postgrad_Faculty(self):
+            dframe=dts2.faculty_pg(self.df)
+            self.display_table_and_download_csv(dframe, 'Postgraduate_Faculty.csv')
+
+        def appointment_types(self):
+            dframe=dts2.faculty_app(self.df)
+            self.display_table_and_download_csv(dframe, 'Appointment-types_faculty.csv')
+
+        def designation_types(self):
+            dframe=dts2.faculty_designation(self.df)
+            self.display_table_and_download_csv(dframe, 'Designation_faculty.csv')
     
         def display_table_and_download_csv(self, dframe, filename):
             st.text("\n")
@@ -123,6 +143,16 @@ if option == "Analytical data":
         def count_by_year_of_joining(self):
             super().count_by_year_of_joining()
 
+        def doctorate_Faculty(self):
+            super().doctorate_Faculty()
+        def postgrad_Faculty(self):
+            super().postgrad_Faculty()
+        def appointment_types(self):
+            super().appointment_types()
+        def designation_types(self):
+            super().designation_types()
+
+
     class Manufacturing(EntireDataset):
         def __init__(self, df):
             super().__init__(df[df['Department'] == 'MANUFACTURING SCIENCE AND ENGINEERING'])
@@ -138,6 +168,15 @@ if option == "Analytical data":
             super().search_email_by_name()
         def count_by_year_of_joining(self):
             super().count_by_year_of_joining()
+
+        def doctorate_Faculty(self):
+            super().doctorate_Faculty()
+        def postgrad_Faculty(self):
+            super().postgrad_Faculty()
+        def appointment_types(self):
+            super().appointment_types()
+        def designation_types(self):
+            super().designation_types()
 
     class ENTC(EntireDataset):
         def __init__(self, df):
@@ -155,6 +194,16 @@ if option == "Analytical data":
         def count_by_year_of_joining(self):
             super().count_by_year_of_joining()
 
+        def doctorate_Faculty(self):
+            super().doctorate_Faculty()
+        def postgrad_Faculty(self):
+            super().postgrad_Faculty()
+        def appointment_types(self):
+            super().appointment_types()
+        def designation_types(self):
+            super().designation_types()
+        
+
     class Metallurgy(EntireDataset):
         def __init__(self, df):
             super().__init__(df[df['Department'] == 'METALLURGY AND MATERIAL TECHNOLOGY'])
@@ -170,6 +219,15 @@ if option == "Analytical data":
             super().search_email_by_name()
         def count_by_year_of_joining(self):
             super().count_by_year_of_joining()
+        
+        def doctorate_Faculty(self):
+            super().doctorate_Faculty()
+        def postgrad_Faculty(self):
+            super().postgrad_Faculty()
+        def appointment_types(self):
+            super().appointment_types()
+        def designation_types(self):
+            super().designation_types()
 
     class Mechanical(EntireDataset):
         def __init__(self, df):
@@ -186,6 +244,15 @@ if option == "Analytical data":
             super().search_email_by_name()
         def count_by_year_of_joining(self):
             super().count_by_year_of_joining()
+        
+        def doctorate_Faculty(self):
+            super().doctorate_Faculty()
+        def postgrad_Faculty(self):
+            super().postgrad_Faculty()
+        def appointment_types(self):
+            super().appointment_types()
+        def designation_types(self):
+            super().designation_types()
 
     class Civil(EntireDataset):
         def __init__(self, df):
@@ -203,6 +270,15 @@ if option == "Analytical data":
         def count_by_year_of_joining(self):
             super().count_by_year_of_joining()
 
+        def doctorate_Faculty(self):
+            super().doctorate_Faculty()
+        def postgrad_Faculty(self):
+            super().postgrad_Faculty()
+        def appointment_types(self):
+            super().appointment_types()
+        def designation_types(self):
+            super().designation_types()
+
     class Instrumentation(EntireDataset):
         def __init__(self, df):
             super().__init__(df[df['Department'] == 'INSTRUMENTATION AND CONTROL ENGINEERING'])
@@ -219,6 +295,15 @@ if option == "Analytical data":
         def count_by_year_of_joining(self):
             super().count_by_year_of_joining()
 
+        def doctorate_Faculty(self):
+            super().doctorate_Faculty()
+        def postgrad_Faculty(self):
+            super().postgrad_Faculty()
+        def appointment_types(self):
+            super().appointment_types()
+        def designation_types(self):
+            super().designation_types()
+
     class Electrical(EntireDataset):
         def __init__(self, df):
             super().__init__(df[df['Department'] == 'ELECTRICAL ENGINEERING'])
@@ -234,6 +319,15 @@ if option == "Analytical data":
             super().search_email_by_name()
         def count_by_year_of_joining(self):
             super().count_by_year_of_joining()
+        
+        def doctorate_Faculty(self):
+            super().doctorate_Faculty()
+        def postgrad_Faculty(self):
+            super().postgrad_Faculty()
+        def appointment_types(self):
+            super().appointment_types()
+        def designation_types(self):
+            super().designation_types()
 
     class EnggEducation(EntireDataset):
         def __init__(self, df):
@@ -251,6 +345,15 @@ if option == "Analytical data":
         def count_by_year_of_joining(self):
             super().count_by_year_of_joining()
 
+        def doctorate_Faculty(self):
+            super().doctorate_Faculty()
+        def postgrad_Faculty(self):
+            super().postgrad_Faculty()
+        def appointment_types(self):
+            super().appointment_types()
+        def designation_types(self):
+            super().designation_types()
+
     class Planning(EntireDataset):
         def __init__(self, df):
             super().__init__(df[df['Department'] == 'TOWN PLANNING'])
@@ -267,6 +370,15 @@ if option == "Analytical data":
         def count_by_year_of_joining(self):
             super().count_by_year_of_joining()
 
+        def doctorate_Faculty(self):
+            super().doctorate_Faculty()
+        def postgrad_Faculty(self):
+            super().postgrad_Faculty()
+        def appointment_types(self):
+            super().appointment_types()
+        def designation_types(self):
+            super().designation_types()
+
     class AppSci(EntireDataset):
         def __init__(self, df):
             super().__init__(df[df['Department'] == 'APPLIED SCIENCE'])
@@ -282,6 +394,15 @@ if option == "Analytical data":
             super().search_email_by_name()
         def count_by_year_of_joining(self):
             super().count_by_year_of_joining()
+        
+        def doctorate_Faculty(self):
+            super().doctorate_Faculty()
+        def postgrad_Faculty(self):
+            super().postgrad_Faculty()
+        def appointment_types(self):
+            super().appointment_types()
+        def designation_types(self):
+            super().designation_types()
 
     class Manage(EntireDataset):
         def __init__(self, df):
@@ -299,6 +420,15 @@ if option == "Analytical data":
         def count_by_year_of_joining(self):
             super().count_by_year_of_joining()
 
+        def doctorate_Faculty(self):
+            super().doctorate_Faculty()
+        def postgrad_Faculty(self):
+            super().postgrad_Faculty()
+        def appointment_types(self):
+            super().appointment_types()
+        def designation_types(self):
+            super().designation_types()
+
     class MBA(EntireDataset):
         def __init__(self, df):
             super().__init__(df[df['Department'] == 'MASTERS IN BUSINESS ADMINISTRATION'])
@@ -314,6 +444,15 @@ if option == "Analytical data":
             super().search_email_by_name()
         def count_by_year_of_joining(self):
             super().count_by_year_of_joining()
+
+        def doctorate_Faculty(self):
+            super().doctorate_Faculty()
+        def postgrad_Faculty(self):
+            super().postgrad_Faculty()
+        def appointment_types(self):
+            super().appointment_types()
+        def designation_types(self):
+            super().designation_types()
 
 
 
@@ -350,6 +489,16 @@ if option == "Analytical data":
             entire1.search_email_by_name()
         elif selected_option == 'Count by year of joining':
             entire1.count_by_year_of_joining()
+        elif selected_option=='Faculty in each Department':
+            entire1.faculty_depts()
+        elif selected_option=='Doctorate Faculty':
+            entire1.doctorate_Faculty()
+        elif selected_option=='Postgraduate Faculty':
+            entire1.postgrad_Faculty()
+        elif selected_option=='Appintment-types of Faculty':
+            entire1.appointment_types()
+        elif selected_option=='Designation of Faculty':
+            entire1.designation_types()
 
     elif dept == 'COMPUTER ENGINEERING':
         if selected_option == 'Faculty data':
@@ -366,6 +515,14 @@ if option == "Analytical data":
             comp_eng.search_email_by_name()
         elif selected_option == 'Count by year of joining':
             comp_eng.count_by_year_of_joining()
+        elif selected_option == 'Doctorate Faculty':
+            comp_eng.doctorate_Faculty()
+        elif selected_option == 'Postgraduate Faculty':
+            comp_eng.postgrad_Faculty()
+        elif selected_option == 'Appintment-types of Faculty':
+            comp_eng.appointment_types()
+        elif selected_option == 'Designation of Faculty':
+            comp_eng.designation_types()
 
     elif dept == 'MANUFACTURING SCIENCE AND ENGINEERING':
         if selected_option == 'Faculty data':
@@ -382,6 +539,14 @@ if option == "Analytical data":
             manu.search_email_by_name()
         elif selected_option == 'Count by year of joining':
             manu.count_by_year_of_joining()
+        elif selected_option == 'Doctorate Faculty':
+            manu.doctorate_Faculty()
+        elif selected_option == 'Postgraduate Faculty':
+            manu.postgrad_Faculty()
+        elif selected_option == 'Appintment-types of Faculty':
+             manu.appointment_types()
+        elif selected_option == 'Designation of Faculty':
+            manu.designation_types()
 
     elif dept == 'ELECTRONICS AND TELECOMMUNICATION':
         if selected_option == 'Faculty data':
@@ -398,6 +563,14 @@ if option == "Analytical data":
             entc.search_email_by_name()
         elif selected_option == 'Count by year of joining':
             entc.count_by_year_of_joining()
+        elif selected_option == 'Doctorate Faculty':
+            entc.doctorate_Faculty()
+        elif selected_option == 'Postgraduate Faculty':
+            entc.postgrad_Faculty()
+        elif selected_option == 'Appintment-types of Faculty':
+            entc.appointment_types()
+        elif selected_option == 'Designation of Faculty':
+            entc.designation_types()
 
     elif dept == 'METALLURGY AND MATERIAL TECHNOLOGY':
         if selected_option == 'Faculty data':
@@ -414,6 +587,14 @@ if option == "Analytical data":
             meta.search_email_by_name()
         elif selected_option == 'Count by year of joining':
             meta.count_by_year_of_joining()
+        elif selected_option == 'Doctorate Faculty':
+            meta.doctorate_Faculty()
+        elif selected_option == 'Postgraduate Faculty':
+            meta.postgrad_Faculty()
+        elif selected_option == 'Appintment-types of Faculty':
+            meta.appointment_types()
+        elif selected_option == 'Designation of Faculty':
+            meta.designation_types()
 
     elif dept == 'MECHANICAL ENGINEERING':
         if selected_option == 'Faculty data':
@@ -430,6 +611,14 @@ if option == "Analytical data":
             mech.search_email_by_name()
         elif selected_option == 'Count by year of joining':
             mech.count_by_year_of_joining()
+        elif selected_option == 'Doctorate Faculty':
+            mech.doctorate_Faculty()
+        elif selected_option == 'Postgraduate Faculty':
+            mech.postgrad_Faculty()
+        elif selected_option == 'Appintment-types of Faculty':
+            mech.appointment_types()
+        elif selected_option == 'Designation of Faculty':
+            mech.designation_types()
 
     elif dept == 'CIVIL ENGINEERING':
         if selected_option == 'Faculty data':
@@ -446,6 +635,15 @@ if option == "Analytical data":
             civil.search_email_by_name()
         elif selected_option == 'Count by year of joining':
             civil.count_by_year_of_joining()
+        elif selected_option == 'Doctorate Faculty':
+            civil.doctorate_Faculty()
+        elif selected_option == 'Postgraduate Faculty':
+            civil.postgrad_Faculty()
+        elif selected_option == 'Appintment-types of Faculty':
+            civil.appointment_types()
+        elif selected_option == 'Designation of Faculty':
+            civil.designation_types()
+
 
     elif dept == 'INSTRUMENTATION AND CONTROL ENGINEERING':
         if selected_option == 'Faculty data':
@@ -462,6 +660,14 @@ if option == "Analytical data":
             instru.search_email_by_name()
         elif selected_option == 'Count by year of joining':
             instru.count_by_year_of_joining()
+        elif selected_option == 'Doctorate Faculty':
+            instru.doctorate_Faculty()
+        elif selected_option == 'Postgraduate Faculty':
+            instru.postgrad_Faculty()
+        elif selected_option == 'Appintment-types of Faculty':
+            instru.appointment_types()
+        elif selected_option == 'Designation of Faculty':
+            instru.designation_types()
 
     elif dept == 'ELECTRICAL ENGINEERING':
         if selected_option == 'Faculty data':
@@ -478,6 +684,14 @@ if option == "Analytical data":
             elec.search_email_by_name()
         elif selected_option == 'Count by year of joining':
             elec.count_by_year_of_joining()
+        elif selected_option == 'Doctorate Faculty':
+            elec.doctorate_Faculty()
+        elif selected_option == 'Postgraduate Faculty':
+            elec.postgrad_Faculty()
+        elif selected_option == 'Appintment-types of Faculty':
+            elec.appointment_types()
+        elif selected_option == 'Designation of Faculty':
+            elec.designation_types()
 
     elif dept == 'ENGINEERING EDUCATION':
         if selected_option == 'Faculty data':
@@ -494,6 +708,14 @@ if option == "Analytical data":
             engg.search_email_by_name()
         elif selected_option == 'Count by year of joining':
             engg.count_by_year_of_joining()
+        elif selected_option == 'Doctorate Faculty':
+            engg.doctorate_Faculty()
+        elif selected_option == 'Postgraduate Faculty':
+            engg.postgrad_Faculty()
+        elif selected_option == 'Appintment-types of Faculty':
+            engg.appointment_types()
+        elif selected_option == 'Designation of Faculty':
+            engg.designation_types()
 
     elif dept == 'TOWN PLANNING':
         if selected_option == 'Faculty data':
@@ -510,6 +732,14 @@ if option == "Analytical data":
             plan.search_email_by_name()
         elif selected_option == 'Count by year of joining':
             plan.count_by_year_of_joining()
+        elif selected_option == 'Doctorate Faculty':
+            plan.doctorate_Faculty()
+        elif selected_option == 'Postgraduate Faculty':
+            plan.postgrad_Faculty()
+        elif selected_option == 'Appintment-types of Faculty':
+            plan.appointment_types()
+        elif selected_option == 'Designation of Faculty':
+            plan.designation_types()
 
     elif dept == 'APPLIED SCIENCE':
         if selected_option == 'Faculty data':
@@ -526,6 +756,14 @@ if option == "Analytical data":
             appsci.search_email_by_name()
         elif selected_option == 'Count by year of joining':
             appsci.count_by_year_of_joining()
+        elif selected_option == 'Doctorate Faculty':
+            appsci.doctorate_Faculty()
+        elif selected_option == 'Postgraduate Faculty':
+            appsci.postgrad_Faculty()
+        elif selected_option == 'Appintment-types of Faculty':
+            appsci.appointment_types()
+        elif selected_option == 'Designation of Faculty':
+            appsci.designation_types()
 
     elif dept == 'MANAGEMENT':
         if selected_option == 'Faculty data':
@@ -542,6 +780,14 @@ if option == "Analytical data":
             manage.search_email_by_name()
         elif selected_option == 'Count by year of joining':
             manage.count_by_year_of_joining()
+        elif selected_option == 'Doctorate Faculty':
+            manage.doctorate_Faculty()
+        elif selected_option == 'Postgraduate Faculty':
+            manage.postgrad_Faculty()
+        elif selected_option == 'Appintment-types of Faculty':
+            manage.appointment_types()
+        elif selected_option == 'Designation of Faculty':
+            manage.designation_types()
 
     elif dept == 'MASTERS IN BUSINESS ADMINISTRATION':
         if selected_option == 'Faculty data':
@@ -558,6 +804,14 @@ if option == "Analytical data":
             mba.search_email_by_name()
         elif selected_option == 'Count by year of joining':
             mba.count_by_year_of_joining()
+        elif selected_option == 'Doctorate Faculty':
+            mba.doctorate_Faculty()
+        elif selected_option == 'Postgraduate Faculty':
+            mba.postgrad_Faculty()
+        elif selected_option == 'Appintment-types of Faculty':
+            mba.appointment_types()
+        elif selected_option == 'Designation of Faculty':
+            mba.designation_types()
     
     
 
