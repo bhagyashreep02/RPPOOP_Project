@@ -7,14 +7,14 @@ df1 = pd.read_csv("Faculty_data copy.csv")
 
 st.sidebar.header("FACULTY DATA VISUALISATION")
 option = st.sidebar.radio(" ",("Main page","Analytical data","Graphical data"))
-st.sidebar.header("\n")
+st.sidebar.divider()
 uploaded_file = st.sidebar.file_uploader("Select a CSV file to visualise data", accept_multiple_files=False,type = ".csv")
 if uploaded_file:
     df1 = pd.read_csv(uploaded_file)
     st.sidebar.text("File uploaded,\ncontinue with the operations above.")
 else:
     st.sidebar.text("Default file being used,\ncontinue with operations above.")
-st.sidebar.header("\n")
+st.sidebar.divider()
 st.sidebar.text("* All input data must be\nentered in bold letters.")
 
 
@@ -25,9 +25,9 @@ def convert_df(df):
 if option == "Main page":
     st.title("FACULTY DATA VISUALISATION")
     st.text(" ")
-    st.divider()
+    st.text("===================================================================================================================")
     st.markdown("**_You can either continue with visualization with the default dataset or upload your dataset in the sidebar_**")
-    st.divider()
+    st.text("===================================================================================================================")
     st.text(" ")
     col1, col2, col3 = st.columns(3)
     with col1:
@@ -35,7 +35,7 @@ if option == "Main page":
     with col2:
         csv1 = convert_df(df1)
         st.download_button(
-            label="Download data as CSV",
+            label="Download default dataset as CSV",
             data=csv1,
             file_name="DATASET.csv",
             mime='text/csv',
