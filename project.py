@@ -3,6 +3,7 @@ import pandas as pd
 import entire_dataset as entire
 import dataset2 as dts2
 
+
 df1 = pd.read_csv("Faculty_data copy.csv")
 
 st.sidebar.header("FACULTY DATA VISUALISATION")
@@ -495,7 +496,7 @@ if option == "Analytical data":
             entire1.doctorate_Faculty()
         elif selected_option=='Postgraduate Faculty':
             entire1.postgrad_Faculty()
-        elif selected_option=='Appintment-types of Faculty':
+        elif selected_option=='Appointment-types of Faculty':
             entire1.appointment_types()
         elif selected_option=='Designation of Faculty':
             entire1.designation_types()
@@ -519,7 +520,7 @@ if option == "Analytical data":
             comp_eng.doctorate_Faculty()
         elif selected_option == 'Postgraduate Faculty':
             comp_eng.postgrad_Faculty()
-        elif selected_option == 'Appintment-types of Faculty':
+        elif selected_option == 'Appointment-types of Faculty':
             comp_eng.appointment_types()
         elif selected_option == 'Designation of Faculty':
             comp_eng.designation_types()
@@ -543,7 +544,7 @@ if option == "Analytical data":
             manu.doctorate_Faculty()
         elif selected_option == 'Postgraduate Faculty':
             manu.postgrad_Faculty()
-        elif selected_option == 'Appintment-types of Faculty':
+        elif selected_option == 'Appointment-types of Faculty':
              manu.appointment_types()
         elif selected_option == 'Designation of Faculty':
             manu.designation_types()
@@ -567,7 +568,7 @@ if option == "Analytical data":
             entc.doctorate_Faculty()
         elif selected_option == 'Postgraduate Faculty':
             entc.postgrad_Faculty()
-        elif selected_option == 'Appintment-types of Faculty':
+        elif selected_option == 'Appointment-types of Faculty':
             entc.appointment_types()
         elif selected_option == 'Designation of Faculty':
             entc.designation_types()
@@ -591,7 +592,7 @@ if option == "Analytical data":
             meta.doctorate_Faculty()
         elif selected_option == 'Postgraduate Faculty':
             meta.postgrad_Faculty()
-        elif selected_option == 'Appintment-types of Faculty':
+        elif selected_option == 'Appointment-types of Faculty':
             meta.appointment_types()
         elif selected_option == 'Designation of Faculty':
             meta.designation_types()
@@ -615,7 +616,7 @@ if option == "Analytical data":
             mech.doctorate_Faculty()
         elif selected_option == 'Postgraduate Faculty':
             mech.postgrad_Faculty()
-        elif selected_option == 'Appintment-types of Faculty':
+        elif selected_option == 'Appointment-types of Faculty':
             mech.appointment_types()
         elif selected_option == 'Designation of Faculty':
             mech.designation_types()
@@ -639,7 +640,7 @@ if option == "Analytical data":
             civil.doctorate_Faculty()
         elif selected_option == 'Postgraduate Faculty':
             civil.postgrad_Faculty()
-        elif selected_option == 'Appintment-types of Faculty':
+        elif selected_option == 'Appointment-types of Faculty':
             civil.appointment_types()
         elif selected_option == 'Designation of Faculty':
             civil.designation_types()
@@ -664,7 +665,7 @@ if option == "Analytical data":
             instru.doctorate_Faculty()
         elif selected_option == 'Postgraduate Faculty':
             instru.postgrad_Faculty()
-        elif selected_option == 'Appintment-types of Faculty':
+        elif selected_option == 'Appointment-types of Faculty':
             instru.appointment_types()
         elif selected_option == 'Designation of Faculty':
             instru.designation_types()
@@ -688,7 +689,7 @@ if option == "Analytical data":
             elec.doctorate_Faculty()
         elif selected_option == 'Postgraduate Faculty':
             elec.postgrad_Faculty()
-        elif selected_option == 'Appintment-types of Faculty':
+        elif selected_option == 'Appointment-types of Faculty':
             elec.appointment_types()
         elif selected_option == 'Designation of Faculty':
             elec.designation_types()
@@ -712,7 +713,7 @@ if option == "Analytical data":
             engg.doctorate_Faculty()
         elif selected_option == 'Postgraduate Faculty':
             engg.postgrad_Faculty()
-        elif selected_option == 'Appintment-types of Faculty':
+        elif selected_option == 'Appointment-types of Faculty':
             engg.appointment_types()
         elif selected_option == 'Designation of Faculty':
             engg.designation_types()
@@ -736,7 +737,7 @@ if option == "Analytical data":
             plan.doctorate_Faculty()
         elif selected_option == 'Postgraduate Faculty':
             plan.postgrad_Faculty()
-        elif selected_option == 'Appintment-types of Faculty':
+        elif selected_option == 'Appointment-types of Faculty':
             plan.appointment_types()
         elif selected_option == 'Designation of Faculty':
             plan.designation_types()
@@ -760,7 +761,7 @@ if option == "Analytical data":
             appsci.doctorate_Faculty()
         elif selected_option == 'Postgraduate Faculty':
             appsci.postgrad_Faculty()
-        elif selected_option == 'Appintment-types of Faculty':
+        elif selected_option == 'Appointment-types of Faculty':
             appsci.appointment_types()
         elif selected_option == 'Designation of Faculty':
             appsci.designation_types()
@@ -784,7 +785,7 @@ if option == "Analytical data":
             manage.doctorate_Faculty()
         elif selected_option == 'Postgraduate Faculty':
             manage.postgrad_Faculty()
-        elif selected_option == 'Appintment-types of Faculty':
+        elif selected_option == 'Appointment-types of Faculty':
             manage.appointment_types()
         elif selected_option == 'Designation of Faculty':
             manage.designation_types()
@@ -808,10 +809,13 @@ if option == "Analytical data":
             mba.doctorate_Faculty()
         elif selected_option == 'Postgraduate Faculty':
             mba.postgrad_Faculty()
-        elif selected_option == 'Appintment-types of Faculty':
+        elif selected_option == 'Appointment-types of Faculty':
             mba.appointment_types()
         elif selected_option == 'Designation of Faculty':
             mba.designation_types()
+
+#elif option=='Graphical data':
+   
     
     
 
