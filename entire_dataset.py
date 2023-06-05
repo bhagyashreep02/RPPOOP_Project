@@ -25,6 +25,18 @@ def age_to_retirement(df):
 
     return final
 
+def get_details(df,name1):
+    firstname = list(df['First Name'])
+    lastname = list(df['Last Name'])
+
+    name2 = name1.split(" ")
+
+    for i in range(len(firstname)):
+        if firstname[i] == name2[0] and lastname[i] == name2[1]:
+            df1 = df.loc[(df['First Name'] == name2[0]) & (df['Last Name'] == name2[1])]
+            return df1.transpose()
+
+
 
 def count_Gender_whole(df):
     gend = df['Gender'].value_counts()

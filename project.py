@@ -57,7 +57,7 @@ if option == "Analytical data":
                 'CIVIL ENGINEERING','INSTRUMENTATION AND CONTROL ENGINEERING','ELECTRICAL ENGINEERING',
                 'ENGINEERING EDUCATION', 'TOWN PLANNING','APPLIED SCIENCE',
                 'MANAGEMENT','MASTERS IN BUSINESS ADMINISTRATION'))
-    selected_option = st.selectbox("Select an operation",(' ','Faculty data','Retirement age','Gender count','Department wise gender count','Get email id\'s','Search email by name','Count by year of joining','Faculty in each Department','Doctorate Faculty','Postgraduate Faculty','Appointment-types of Faculty','Designation of Faculty'))
+    selected_option = st.selectbox("Select an operation",(' ','Faculty data','Search by name','Retirement age','Gender count','Department wise gender count','Get email IDs','Search email by name','Count by year of joining','Faculty in each Department','Doctorate Faculty','Postgraduate Faculty','Appointment-types of Faculty','Designation of Faculty'))
     
     class EntireDataset:
         def __init__(self, df):
@@ -67,6 +67,11 @@ if option == "Analytical data":
             data = entire.faculty_data(self.df)
             dframe = pd.DataFrame(data)
             self.display_table_and_download_csv(dframe, 'Faculty_data.csv')
+
+        def get_details(self):
+            title = st.text_input('Enter Name')
+            data = entire.get_details(self.df, title)
+            st.table(data)
     
         def retirement_age(self):
             data = entire.age_to_retirement(self.df)
@@ -135,6 +140,8 @@ if option == "Analytical data":
             super().__init__(df[df['Department'] == "COMPUTER ENGINEERING"])
         def faculty_data(self):
             super().faculty_data()
+        def get_details(self):
+            super().get_details()
         def retirement_age(self):
             super().retirement_age()
         def department_wise_gender_count(self):
@@ -161,6 +168,8 @@ if option == "Analytical data":
             super().__init__(df[df['Department'] == 'MANUFACTURING SCIENCE AND ENGINEERING'])
         def faculty_data(self):
             super().faculty_data()
+        def get_details(self):
+            super().get_details()
         def retirement_age(self):
             super().retirement_age()
         def department_wise_gender_count(self):
@@ -186,6 +195,8 @@ if option == "Analytical data":
             super().__init__(df[df['Department'] == 'ELECTRONICS AND TELECOMMUNICATION'])
         def faculty_data(self):
             super().faculty_data()
+        def get_details(self):
+            super().get_details()
         def retirement_age(self):
             super().retirement_age()
         def department_wise_gender_count(self):
@@ -212,6 +223,8 @@ if option == "Analytical data":
             super().__init__(df[df['Department'] == 'METALLURGY AND MATERIAL TECHNOLOGY'])
         def faculty_data(self):
             super().faculty_data()
+        def get_details(self):
+            super().get_details()
         def retirement_age(self):
             super().retirement_age()
         def department_wise_gender_count(self):
@@ -237,6 +250,8 @@ if option == "Analytical data":
             super().__init__(df[df['Department'] == 'MECHANICAL ENGINEERING'])
         def faculty_data(self):
             super().faculty_data()
+        def get_details(self):
+            super().get_details()
         def retirement_age(self):
             super().retirement_age()
         def department_wise_gender_count(self):
@@ -262,6 +277,8 @@ if option == "Analytical data":
             super().__init__(df[df['Department'] == 'CIVIL ENGINEERING'])
         def faculty_data(self):
             super().faculty_data()
+        def get_details(self):
+            super().get_details()
         def retirement_age(self):
             super().retirement_age()
         def department_wise_gender_count(self):
@@ -287,6 +304,8 @@ if option == "Analytical data":
             super().__init__(df[df['Department'] == 'INSTRUMENTATION AND CONTROL ENGINEERING'])
         def faculty_data(self):
             super().faculty_data()
+        def get_details(self):
+            super().get_details()
         def retirement_age(self):
             super().retirement_age()
         def department_wise_gender_count(self):
@@ -312,6 +331,8 @@ if option == "Analytical data":
             super().__init__(df[df['Department'] == 'ELECTRICAL ENGINEERING'])
         def faculty_data(self):
             super().faculty_data()
+        def get_details(self):
+            super().get_details()
         def retirement_age(self):
             super().retirement_age()
         def department_wise_gender_count(self):
@@ -337,6 +358,8 @@ if option == "Analytical data":
             super().__init__(df[df['Department'] == 'ENGINEERING EDUCATION'])
         def faculty_data(self):
             super().faculty_data()
+        def get_details(self):
+            super().get_details()
         def retirement_age(self):
             super().retirement_age()
         def department_wise_gender_count(self):
@@ -362,6 +385,8 @@ if option == "Analytical data":
             super().__init__(df[df['Department'] == 'TOWN PLANNING'])
         def faculty_data(self):
             super().faculty_data()
+        def get_details(self):
+            super().get_details()
         def retirement_age(self):
             super().retirement_age()
         def department_wise_gender_count(self):
@@ -387,6 +412,8 @@ if option == "Analytical data":
             super().__init__(df[df['Department'] == 'APPLIED SCIENCE'])
         def faculty_data(self):
             super().faculty_data()
+        def get_details(self):
+            super().get_details()
         def retirement_age(self):
             super().retirement_age()
         def department_wise_gender_count(self):
@@ -412,6 +439,8 @@ if option == "Analytical data":
             super().__init__(df[df['Department'] == 'MANAGEMENT'])
         def faculty_data(self):
             super().faculty_data()
+        def get_details(self):
+            super().get_details()
         def retirement_age(self):
             super().retirement_age()
         def department_wise_gender_count(self):
@@ -437,6 +466,8 @@ if option == "Analytical data":
             super().__init__(df[df['Department'] == 'MASTERS IN BUSINESS ADMINISTRATION'])
         def faculty_data(self):
             super().faculty_data()
+        def get_details(self):
+            super().get_details()
         def retirement_age(self):
             super().retirement_age()
         def department_wise_gender_count(self):
@@ -480,6 +511,8 @@ if option == "Analytical data":
     if dept == 'ENTIRE DATASET':
         if selected_option == 'Faculty data':
             entire1.faculty_data()
+        elif selected_option == 'Search by name':
+            entire1.get_details()
         elif selected_option == 'Retirement age':
             entire1.retirement_age()
         elif selected_option == 'Gender count':
@@ -506,6 +539,8 @@ if option == "Analytical data":
     elif dept == 'COMPUTER ENGINEERING':
         if selected_option == 'Faculty data':
             comp_eng.faculty_data()
+        elif selected_option == 'Search by name':
+            comp_eng.get_details()
         elif selected_option == 'Retirement age':
             comp_eng.retirement_age()
         elif selected_option == 'Gender count':
@@ -530,6 +565,8 @@ if option == "Analytical data":
     elif dept == 'MANUFACTURING SCIENCE AND ENGINEERING':
         if selected_option == 'Faculty data':
             manu.faculty_data()
+        elif selected_option == 'Search by name':
+            manu.get_details()
         elif selected_option == 'Retirement age':
             manu.retirement_age()
         elif selected_option == 'Gender count':
@@ -554,6 +591,8 @@ if option == "Analytical data":
     elif dept == 'ELECTRONICS AND TELECOMMUNICATION':
         if selected_option == 'Faculty data':
             entc.faculty_data()
+        elif selected_option == 'Search by name':
+            entc.get_details()
         elif selected_option == 'Retirement age':
             entc.retirement_age()
         elif selected_option == 'Gender count':
@@ -578,6 +617,8 @@ if option == "Analytical data":
     elif dept == 'METALLURGY AND MATERIAL TECHNOLOGY':
         if selected_option == 'Faculty data':
             meta.faculty_data()
+        elif selected_option == 'Search by name':
+            meta.get_details()
         elif selected_option == 'Retirement age':
             meta.retirement_age()
         elif selected_option == 'Gender count':
@@ -602,6 +643,8 @@ if option == "Analytical data":
     elif dept == 'MECHANICAL ENGINEERING':
         if selected_option == 'Faculty data':
             mech.faculty_data()
+        elif selected_option == 'Search by name':
+            mech.get_details()
         elif selected_option == 'Retirement age':
             mech.retirement_age()
         elif selected_option == 'Gender count':
@@ -626,6 +669,8 @@ if option == "Analytical data":
     elif dept == 'CIVIL ENGINEERING':
         if selected_option == 'Faculty data':
             civil.faculty_data()
+        elif selected_option == 'Search by name':
+            civil.get_details()
         elif selected_option == 'Retirement age':
             civil.retirement_age()
         elif selected_option == 'Gender count':
@@ -651,6 +696,8 @@ if option == "Analytical data":
     elif dept == 'INSTRUMENTATION AND CONTROL ENGINEERING':
         if selected_option == 'Faculty data':
             instru.faculty_data()
+        elif selected_option == 'Search by name':
+            instru.get_details()
         elif selected_option == 'Retirement age':
             instru.retirement_age()
         elif selected_option == 'Gender count':
@@ -675,6 +722,8 @@ if option == "Analytical data":
     elif dept == 'ELECTRICAL ENGINEERING':
         if selected_option == 'Faculty data':
             elec.faculty_data()
+        elif selected_option == 'Search by name':
+            elec.get_details()
         elif selected_option == 'Retirement age':
             elec.retirement_age()
         elif selected_option == 'Gender count':
@@ -699,6 +748,8 @@ if option == "Analytical data":
     elif dept == 'ENGINEERING EDUCATION':
         if selected_option == 'Faculty data':
             engg.faculty_data()
+        elif selected_option == 'Search by name':
+            engg.get_details()
         elif selected_option == 'Retirement age':
             engg.retirement_age()
         elif selected_option == 'Gender count':
@@ -723,6 +774,8 @@ if option == "Analytical data":
     elif dept == 'TOWN PLANNING':
         if selected_option == 'Faculty data':
             plan.faculty_data()
+        elif selected_option == 'Search by name':
+            plan.get_details()
         elif selected_option == 'Retirement age':
             plan.retirement_age()
         elif selected_option == 'Gender count':
@@ -747,6 +800,8 @@ if option == "Analytical data":
     elif dept == 'APPLIED SCIENCE':
         if selected_option == 'Faculty data':
             appsci.faculty_data()
+        elif selected_option == 'Search by name':
+            appsci.get_details()
         elif selected_option == 'Retirement age':
             appsci.retirement_age()
         elif selected_option == 'Gender count':
@@ -771,6 +826,8 @@ if option == "Analytical data":
     elif dept == 'MANAGEMENT':
         if selected_option == 'Faculty data':
             manage.faculty_data()
+        elif selected_option == 'Search by name':
+            manage.get_details()
         elif selected_option == 'Retirement age':
             manage.retirement_age()
         elif selected_option == 'Gender count':
@@ -795,6 +852,8 @@ if option == "Analytical data":
     elif dept == 'MASTERS IN BUSINESS ADMINISTRATION':
         if selected_option == 'Faculty data':
             mba.faculty_data()
+        elif selected_option == 'Search by name':
+            mba.get_details()
         elif selected_option == 'Retirement age':
             mba.retirement_age()
         elif selected_option == 'Gender count':
@@ -1204,4 +1263,3 @@ elif option=='Graphical data':
 
     
     
-
