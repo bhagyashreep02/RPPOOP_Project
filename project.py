@@ -2,6 +2,8 @@ import streamlit as st
 import pandas as pd
 import entire_dataset as entire
 import dataset2 as dts2
+import matplotlib.pyplot as plt
+import seaborn as sns
 
 
 df1 = pd.read_csv("Faculty_data copy.csv")
@@ -814,10 +816,391 @@ if option == "Analytical data":
         elif selected_option == 'Designation of Faculty':
             mba.designation_types()
 
-#elif option=='Graphical data':
-   
+elif option=='Graphical data':
+    dept = st.selectbox("Select a department",(' ','ENTIRE DATASET', 'COMPUTER ENGINEERING','MANUFACTURING SCIENCE AND ENGINEERING',
+                'ELECTRONICS AND TELECOMMUNICATION','METALLURGY AND MATERIAL TECHNOLOGY','MECHANICAL ENGINEERING',
+                'CIVIL ENGINEERING','INSTRUMENTATION AND CONTROL ENGINEERING','ELECTRICAL ENGINEERING',
+                'ENGINEERING EDUCATION', 'TOWN PLANNING','APPLIED SCIENCE',
+                'MANAGEMENT','MASTERS IN BUSINESS ADMINISTRATION'))
+    selected_option = st.selectbox("Select an operation",(' ','Faculty in each Department','Faculty-doctorate','Faculty-Postgraduate','Faculty-appointment types','Faculty-designation types'))
     
+    class EntireDataset:
+
+        def __init__(self, df):
+            self.df = df
+
+        def fact_dep_plot(self):
+            dept_counts=dts2.faculty_dept(self.df)
+            sns.set_style('whitegrid')
+            plt.figure(figsize=(12, 8))
+            ax = sns.barplot(x='Department', y='Count', data=dept_counts, palette='bright', alpha=0.8)
+            ax.set_xticklabels(ax.get_xticklabels(), rotation=45, ha='right')
+            plt.title('Number of Faculty in Each Department')
+            plt.xlabel('Department')
+            plt.ylabel('Number of Faculty')
+            plt.tight_layout() 
+            st.pyplot(plt)
+
+        def faculty_doctorate_plot(self):
+            doc_counts=dts2.faculty_doctorate(self.df)
+            sns.set_style('whitegrid')
+            plt.figure(figsize=(1.7, 1.7))
+            colors = sns.color_palette('bright')
+            plt.pie(doc_counts['Count'], labels=doc_counts['Doctorate Degree'], autopct='%1.1f%%', startangle=90, colors=colors)
+            plt.title('Doctorate degree-Faculty')
+            plt.axis('equal')  # Ensure the pie is drawn as a circle
+            plt.savefig('plot2.png')
+            st.pyplot(plt)
+
+        def faculty_pg_plot(self):
+            pg1_counts=dts2.faculty_pg(self.df)
+            sns.set_style('whitegrid')
+            plt.figure(figsize=(1.7, 1.7))
+            colors = sns.color_palette('bright')
+            plt.pie(pg1_counts['Count'], labels=pg1_counts['PG'], autopct='%1.1f%%', startangle=90, colors=colors)
+            plt.title('Post Graduate-Faculty')
+            plt.axis('equal')
+            st.pyplot(plt)
+        def faculty_app_plot(self):
+            app_counts=dts2.faculty_app(self.df)
+            sns.set_style('whitegrid')
+            plt.figure(figsize=(3,3))
+            sns.histplot(data=app_counts, x='Appointment Type', weights='Count', kde=False, color='blue')
+            plt.title('Distribution of Appointment Types')
+            plt.xlabel('Appointment Type')
+            plt.ylabel('Count')
+            plt.xticks(rotation=45, ha='center')
+            st.pyplot(plt)
+
+        def faculty_designation_plot(self):
+            des_counts=dts2.faculty_designation(self.df)
+            sns.set_style('whitegrid')
+            plt.figure(figsize=(3,3))
+            sns.histplot(data=des_counts, x='Designation', weights='Count', kde=False, color='green')
+            plt.title('Distribution of Designations')
+            plt.xlabel('Designation')
+            plt.ylabel('Count')
+            plt.xticks(rotation=45, ha='center') 
+            st.pyplot(plt)
+
+    class ComputerEngineering(EntireDataset):
+        def __init__(self, df):
+            super().__init__(df[df['Department'] == "COMPUTER ENGINEERING"])        
+        def faculty_doctorate_plot(self):
+            super().faculty_doctorate_plot()
+        def faculty_pg_plot(self):
+            super().faculty_pg_plot()
+        def faculty_app_plot(self):
+            super().faculty_app_plot()
+        def faculty_designation_plot(self):
+             super().faculty_designation_plot()
+
+    class Manufacturing(EntireDataset):
+        def __init__(self, df):
+            super().__init__(df[df['Department'] == 'MANUFACTURING SCIENCE AND ENGINEERING'])
+        def faculty_doctorate_plot(self):
+            super().faculty_doctorate_plot()
+        def faculty_pg_plot(self):
+            super().faculty_pg_plot()
+        def faculty_app_plot(self):
+            super().faculty_app_plot()
+        def faculty_designation_plot(self):
+             super().faculty_designation_plot()
+
+    class ENTC(EntireDataset):
+        def __init__(self, df):
+            super().__init__(df[df['Department'] == 'ELECTRONICS AND TELECOMMUNICATION'])
+        def faculty_doctorate_plot(self):
+            super().faculty_doctorate_plot()
+        def faculty_pg_plot(self):
+            super().faculty_pg_plot()
+        def faculty_app_plot(self):
+            super().faculty_app_plot()
+        def faculty_designation_plot(self):
+             super().faculty_designation_plot()
+
+    class Metallurgy(EntireDataset):
+        def __init__(self, df):
+            super().__init__(df[df['Department'] == 'METALLURGY AND MATERIAL TECHNOLOGY'])
+        def faculty_doctorate_plot(self):
+            super().faculty_doctorate_plot()
+        def faculty_pg_plot(self):
+            super().faculty_pg_plot()
+        def faculty_app_plot(self):
+            super().faculty_app_plot()
+        def faculty_designation_plot(self):
+             super().faculty_designation_plot()
+
+    class Mechanical(EntireDataset):
+        def __init__(self, df):
+            super().__init__(df[df['Department'] == 'MECHANICAL ENGINEERING'])
+        def faculty_doctorate_plot(self):
+            super().faculty_doctorate_plot()
+        def faculty_pg_plot(self):
+            super().faculty_pg_plot()
+        def faculty_app_plot(self):
+            super().faculty_app_plot()
+        def faculty_designation_plot(self):
+             super().faculty_designation_plot()
+
+    class Civil(EntireDataset):
+        def __init__(self, df):
+            super().__init__(df[df['Department'] == 'CIVIL ENGINEERING'])
+        def faculty_doctorate_plot(self):
+            super().faculty_doctorate_plot()
+        def faculty_pg_plot(self):
+            super().faculty_pg_plot()
+        def faculty_app_plot(self):
+            super().faculty_app_plot()
+        def faculty_designation_plot(self):
+             super().faculty_designation_plot()
+
+    class Instrumentation(EntireDataset):
+        def __init__(self, df):
+            super().__init__(df[df['Department'] == 'INSTRUMENTATION AND CONTROL ENGINEERING'])
+        def faculty_doctorate_plot(self):
+            super().faculty_doctorate_plot()
+        def faculty_pg_plot(self):
+            super().faculty_pg_plot()
+        def faculty_app_plot(self):
+            super().faculty_app_plot()
+        def faculty_designation_plot(self):
+             super().faculty_designation_plot()
+
+    class Electrical(EntireDataset):
+        def __init__(self, df):
+            super().__init__(df[df['Department'] == 'ELECTRICAL ENGINEERING'])
+        def faculty_doctorate_plot(self):
+            super().faculty_doctorate_plot()
+        def faculty_pg_plot(self):
+            super().faculty_pg_plot()
+        def faculty_app_plot(self):
+            super().faculty_app_plot()
+        def faculty_designation_plot(self):
+             super().faculty_designation_plot()
+
+    class EnggEducation(EntireDataset):
+        def __init__(self, df):
+            super().__init__(df[df['Department'] == 'ENGINEERING EDUCATION'])
+        def faculty_doctorate_plot(self):
+            super().faculty_doctorate_plot()
+        def faculty_pg_plot(self):
+            super().faculty_pg_plot()
+        def faculty_app_plot(self):
+            super().faculty_app_plot()
+        def faculty_designation_plot(self):
+             super().faculty_designation_plot()
+
+    class Planning(EntireDataset):
+        def __init__(self, df):
+            super().__init__(df[df['Department'] == 'TOWN PLANNING'])
+        def faculty_doctorate_plot(self):
+            super().faculty_doctorate_plot()
+        def faculty_pg_plot(self):
+            super().faculty_pg_plot()
+        def faculty_app_plot(self):
+            super().faculty_app_plot()
+        def faculty_designation_plot(self):
+             super().faculty_designation_plot()
+
+    class AppSci(EntireDataset):
+        def __init__(self, df):
+            super().__init__(df[df['Department'] == 'APPLIED SCIENCE'])
+        def faculty_doctorate_plot(self):
+            super().faculty_doctorate_plot()
+        def faculty_pg_plot(self):
+            super().faculty_pg_plot()
+        def faculty_app_plot(self):
+            super().faculty_app_plot()
+        def faculty_designation_plot(self):
+             super().faculty_designation_plot()
+
+    class Manage(EntireDataset):
+        def __init__(self, df):
+            super().__init__(df[df['Department'] == 'MANAGEMENT'])
+        def faculty_doctorate_plot(self):
+            super().faculty_doctorate_plot()
+        def faculty_pg_plot(self):
+            super().faculty_pg_plot()
+        def faculty_app_plot(self):
+            super().faculty_app_plot()
+        def faculty_designation_plot(self):
+             super().faculty_designation_plot()
+
+    class MBA(EntireDataset):
+        def __init__(self, df):
+            super().__init__(df[df['Department'] == 'MASTERS IN BUSINESS ADMINISTRATION'])
+        def faculty_doctorate_plot(self):
+            super().faculty_doctorate_plot()
+        def faculty_pg_plot(self):
+            super().faculty_pg_plot()
+        def faculty_app_plot(self):
+            super().faculty_app_plot()
+        def faculty_designation_plot(self):
+             super().faculty_designation_plot()
+
     
+    entire2= EntireDataset(df1)
+    comp_eng = ComputerEngineering(df1)
+    manu = Manufacturing(df1)
+    entc = ENTC(df1)
+    meta = Metallurgy(df1)
+    mech = Mechanical(df1)
+    civil = Civil(df1)
+    instru = Instrumentation(df1)
+    elec = Electrical(df1)
+    engg = EnggEducation(df1)
+    plan = Planning(df1)
+    appsci = AppSci(df1)
+    manage = Manage(df1)
+    mba = MBA(df1)
+
+
+    if dept=='ENTIRE DATASET':
+        if selected_option=='Faculty in each Department':
+            entire2.fact_dep_plot()
+        elif selected_option=='Faculty-doctorate':
+            entire2.faculty_doctorate_plot()
+        elif selected_option=='Faculty-Postgraduate':
+            entire2.faculty_pg_plot()
+        elif selected_option=='Faculty-appointment types':
+            entire2.faculty_app_plot()
+        elif selected_option=='Faculty-designation types':
+            entire2.faculty_designation_plot()
+
+    elif dept=='COMPUTER ENGINEERING':
+        if selected_option=='Faculty-doctorate':
+            comp_eng.faculty_doctorate_plot()
+        elif selected_option=='Faculty-Postgraduate':
+            comp_eng.faculty_pg_plot()
+        elif selected_option=='Faculty-appointment types':
+            comp_eng.faculty_app_plot()
+        elif selected_option=='Faculty-designation types':
+            comp_eng.faculty_designation_plot()
+
+    elif dept=='MANUFACTURING SCIENCE AND ENGINEERING':
+        if selected_option=='Faculty-doctorate':
+            manu.faculty_doctorate_plot()
+        elif selected_option=='Faculty-Postgraduate':
+            manu.faculty_pg_plot()
+        elif selected_option=='Faculty-appointment types':
+            manu.faculty_app_plot()
+        elif selected_option=='Faculty-designation types':
+            manu.faculty_designation_plot()
+
+    elif dept=='ELECTRONICS AND TELECOMMUNICATION':
+        if selected_option=='Faculty-doctorate':
+            entc.faculty_doctorate_plot()
+        elif selected_option=='Faculty-Postgraduate':
+            entc.faculty_pg_plot()
+        elif selected_option=='Faculty-appointment types':
+            entc.faculty_app_plot()
+        elif selected_option=='Faculty-designation types':
+            entc.faculty_designation_plot()
+
+    elif dept== 'METALLURGY AND MATERIAL TECHNOLOGY':
+        if selected_option=='Faculty-doctorate':
+            meta.faculty_doctorate_plot()
+        elif selected_option=='Faculty-Postgraduate':
+            meta.faculty_pg_plot()
+        elif selected_option=='Faculty-appointment types':
+            meta.faculty_app_plot()
+        elif selected_option=='Faculty-designation types':
+            meta.faculty_designation_plot()
+
+    elif dept=='MECHANICAL ENGINEERING':
+        if selected_option=='Faculty-doctorate':
+            mech.faculty_doctorate_plot()
+        elif selected_option=='Faculty-Postgraduate':
+            mech.faculty_pg_plot()
+        elif selected_option=='Faculty-appointment types':
+            mech.faculty_app_plot()
+        elif selected_option=='Faculty-designation types':
+            mech.faculty_designation_plot()
+
+    elif dept=='CIVIL ENGINEERING':
+        if selected_option=='Faculty-doctorate':
+            civil.faculty_doctorate_plot()
+        elif selected_option=='Faculty-Postgraduate':
+            civil.faculty_pg_plot()
+        elif selected_option=='Faculty-appointment types':
+            civil.faculty_app_plot()
+        elif selected_option=='Faculty-designation types':
+            civil.faculty_designation_plot()
+
+    elif dept== 'INSTRUMENTATION AND CONTROL ENGINEERING':
+        if selected_option=='Faculty-doctorate':
+            instru.faculty_doctorate_plot()
+        elif selected_option=='Faculty-Postgraduate':
+            instru.faculty_pg_plot()
+        elif selected_option=='Faculty-appointment types':
+            instru.faculty_app_plot()
+        elif selected_option=='Faculty-designation types':
+            instru.faculty_designation_plot()
+
+    elif dept== 'ELECTRICAL ENGINEERING':
+        if selected_option=='Faculty-doctorate':
+            elec.faculty_doctorate_plot()
+        elif selected_option=='Faculty-Postgraduate':
+            elec.faculty_pg_plot()
+        elif selected_option=='Faculty-appointment types':
+            elec.faculty_app_plot()
+        elif selected_option=='Faculty-designation types':
+            elec.faculty_designation_plot()
+
+    elif dept== 'ENGINEERING EDUCATION':
+        if selected_option=='Faculty-doctorate':
+            engg.faculty_doctorate_plot()
+        elif selected_option=='Faculty-Postgraduate':
+            engg.faculty_pg_plot()
+        elif selected_option=='Faculty-appointment types':
+            engg.faculty_app_plot()
+        elif selected_option=='Faculty-designation types':
+            engg.faculty_designation_plot()
+
+    elif dept== 'TOWN PLANNING':
+        if selected_option=='Faculty-doctorate':
+            plan.faculty_doctorate_plot()
+        elif selected_option=='Faculty-Postgraduate':
+            plan.faculty_pg_plot()
+        elif selected_option=='Faculty-appointment types':
+            plan.faculty_app_plot()
+        elif selected_option=='Faculty-designation types':
+            plan.faculty_designation_plot()
+
+    elif dept== 'APPLIED SCIENCE':
+        if selected_option=='Faculty-doctorate':
+            appsci.faculty_doctorate_plot()
+        elif selected_option=='Faculty-Postgraduate':
+            appsci.faculty_pg_plot()
+        elif selected_option=='Faculty-appointment types':
+            appsci.faculty_app_plot()
+        elif selected_option=='Faculty-designation types':
+            appsci.faculty_designation_plot()
+
+    elif dept=='MANAGEMENT':
+        if selected_option=='Faculty-doctorate':
+            manage.faculty_doctorate_plot()
+        elif selected_option=='Faculty-Postgraduate':
+            manage.faculty_pg_plot()
+        elif selected_option=='Faculty-appointment types':
+            manage.faculty_app_plot()
+        elif selected_option=='Faculty-designation types':
+            manage.faculty_designation_plot()
+
+    elif dept=='MASTERS IN BUSINESS ADMINISTRATION':
+        if selected_option=='Faculty-doctorate':
+            mba.faculty_doctorate_plot()
+        elif selected_option=='Faculty-Postgraduate':
+            mba.faculty_pg_plot()
+        elif selected_option=='Faculty-appointment types':
+            mba.faculty_app_plot()
+        elif selected_option=='Faculty-designation types':
+            mba.faculty_designation_plot()
+
+    
+
+
 
     
     

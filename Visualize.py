@@ -23,7 +23,7 @@ def faculty_dep_plot(df):
 
     plt.tight_layout() 
 
-    plt.show()
+    st.pyplot()
 
 faculty_dep_plot()
 
@@ -39,7 +39,7 @@ def faculty_doctorate_plot(df):
 
     plt.axis('equal')  # Ensure the pie is drawn as a circle
     plt.savefig('plot2.png')
-    plt.show()
+    st.pyplot()
 
 def faculty_pg_plot(df):
     pg_counts=dts.faculty_pg(df)
@@ -51,7 +51,7 @@ def faculty_pg_plot(df):
     plt.title('Post Graduate-Faculty')
 
     plt.axis('equal')  
-    plt.show()
+    st.pyplot()
 
 def faculty_app_plot(df):
     app_counts=dts.faculty_app(df)
@@ -66,7 +66,7 @@ def faculty_app_plot(df):
 
     plt.xticks(rotation=45)
 
-    plt.show()
+    st.pyplot()
 
 def faculty_designation_plot(df):
     des_counts=dts.faculty_designation(df)
@@ -81,4 +81,53 @@ def faculty_designation_plot(df):
 
     plt.xticks(rotation=45)
 
-    plt.show()
+    st.pyplot()
+
+    class Manufacturing(EntireDataset):
+        def __init__(self, df):
+            super().__init__(df[df['Department'] == 'MANUFACTURING SCIENCE AND ENGINEERING'])
+    class ENTC(EntireDataset):
+        def __init__(self, df):
+            super().__init__(df[df['Department'] == 'ELECTRONICS AND TELECOMMUNICATION'])
+    class Metallurgy(EntireDataset):
+        def __init__(self, df):
+            super().__init__(df[df['Department'] == 'METALLURGY AND MATERIAL TECHNOLOGY'])
+    class Mechanical(EntireDataset):
+        def __init__(self, df):
+            super().__init__(df[df['Department'] == 'MECHANICAL ENGINEERING'])
+    class Civil(EntireDataset):
+        def __init__(self, df):
+            super().__init__(df[df['Department'] == 'CIVIL ENGINEERING'])
+    class Instrumentation(EntireDataset):
+        def __init__(self, df):
+            super().__init__(df[df['Department'] == 'INSTRUMENTATION AND CONTROL ENGINEERING'])
+    class Electrical(EntireDataset):
+        def __init__(self, df):
+            super().__init__(df[df['Department'] == 'ELECTRICAL ENGINEERING'])
+    class EnggEducation(EntireDataset):
+        def __init__(self, df):
+            super().__init__(df[df['Department'] == 'ENGINEERING EDUCATION'])
+    class Planning(EntireDataset):
+        def __init__(self, df):
+            super().__init__(df[df['Department'] == 'TOWN PLANNING'])
+    class AppSci(EntireDataset):
+        def __init__(self, df):
+            super().__init__(df[df['Department'] == 'APPLIED SCIENCE'])
+    class Manage(EntireDataset):
+        def __init__(self, df):
+            super().__init__(df[df['Department'] == 'MANAGEMENT'])
+    class MBA(EntireDataset):
+        def __init__(self, df):
+            super().__init__(df[df['Department'] == 'MASTERS IN BUSINESS ADMINISTRATION'])
+    
+    entc = ENTC(df1)
+    meta = Metallurgy(df1)
+    mech = Mechanical(df1)
+    civil = Civil(df1)
+    instru = Instrumentation(df1)
+    elec = Electrical(df1)
+    engg = EnggEducation(df1)
+    plan = Planning(df1)
+    appsci = AppSci(df1)
+    manage = Manage(df1)
+    mba = MBA(df1)
