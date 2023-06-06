@@ -21,6 +21,11 @@ st.sidebar.divider()
 st.sidebar.text("* All input data must be\nentered in bold letters.")
 
 
+st.markdown(""" <style>
+#MainMenu {visibility: hidden;}
+footer {visibility: hidden;}
+</style> """, unsafe_allow_html=True)
+
 def convert_df(df):
     return df.to_csv().encode('utf-8')
 
@@ -32,21 +37,46 @@ if option == "Main page":
     st.markdown("**_You can either continue with visualization with the default dataset or upload your dataset in the sidebar_**")
     st.text("===================================================================================================================")
     st.text(" ")
-    col1, col2, col3 = st.columns(3)
-    with col1:
-        st.text(" ")
-    with col2:
-        csv1 = convert_df(df1)
-        st.download_button(
-            label="Download default dataset as CSV",
-            data=csv1,
-            file_name="DATASET.csv",
-            mime='text/csv',
-            )
-    with col3:
-        st.text(" ")
-    with st.expander("View the default dataset"):
-        st.table(df1)
+    col4,col5 = st.columns(2)
+    tab1, tab2 = st.tabs(["\t\t\t\t\t\tView the default dataset\t", "\t\t\t\t\t\tDownload the default dataset\t"])
+    with col4:
+        with tab2:
+            col1,col2,col3 = st.columns(3)
+            with col2:
+                csv1 = convert_df(df1)
+                st.download_button(
+                    label="Download default dataset as CSV",
+                    data=csv1,
+                    file_name="DATASET.csv",
+                    mime='text/csv',
+                    )
+    with col5:
+        with tab1:
+            with st.expander("View the default dataset"):
+                st.markdown(
+                f"""
+                <style>
+                .stApp {{
+                background-color: "white;
+                }}
+                </style>
+                    """,
+                unsafe_allow_html=True
+                )
+                st.dataframe(df1)
+    
+    st.markdown(
+         f"""
+         <style>
+         .stApp {{
+             background-image: url("https://images.unsplash.com/photo-1523961131990-5ea7c61b2107?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80");
+             background-attachment: fixed;
+             background-size: cover
+         }}
+         </style>
+         """,
+         unsafe_allow_html=True
+     )
 
 
 
