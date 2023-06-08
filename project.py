@@ -54,16 +54,6 @@ if option == "Main page":
     with col5:
         with tab1:
             with st.expander("View the default dataset"):
-                st.markdown(
-                f"""
-                <style>
-                .stApp {{
-                background-color: "white;
-                }}
-                </style>
-                    """,
-                unsafe_allow_html=True
-                )
                 st.dataframe(df1)
     
     st.markdown(
