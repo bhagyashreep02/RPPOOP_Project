@@ -107,6 +107,9 @@ if option == "Analytical data":
             data = entire.count_Gender_Department(self.df)
             dframe = pd.DataFrame(data)
             self.display_table_and_download_csv(dframe, 'Department_wise_gender.csv')
+            show_faculty_names = st.checkbox("Show Faculties by gender")
+            if show_faculty_names:
+                self.display_faculty_members_by_category(dframe, 'Gender')
     
         def get_email_ids(self):
             data = entire.find_email(self.df)
@@ -130,18 +133,34 @@ if option == "Analytical data":
         def doctorate_Faculty(self):
             dframe=dts2.faculty_doctorate(self.df)
             self.display_table_and_download_csv(dframe, 'Doctorate_Faculty.csv')
-        
+            show_faculty_names = st.checkbox("Show corresponding Faculties")
+            if show_faculty_names:
+                self.display_faculty_members_by_category(dframe, 'Doctorate Degree')
+
         def postgrad_Faculty(self):
             dframe=dts2.faculty_pg(self.df)
             self.display_table_and_download_csv(dframe, 'Postgraduate_Faculty.csv')
+            show_faculty_names = st.checkbox("Show corresponding Faculties")
+            if show_faculty_names:
+                self.display_faculty_members_by_category(dframe, 'PG')
+
 
         def appointment_types(self):
             dframe=dts2.faculty_app(self.df)
             self.display_table_and_download_csv(dframe, 'Appointment-types_faculty.csv')
+            show_faculty_names = st.checkbox(" Show Faculty by appointment type")
+    
+            if show_faculty_names:
+                self.display_faculty_members_by_category(dframe, 'Appointment Type')
 
         def designation_types(self):
             dframe=dts2.faculty_designation(self.df)
             self.display_table_and_download_csv(dframe, 'Designation_faculty.csv')
+            show_faculty_names = st.checkbox(" Show Faculty by designation type")
+    
+            if show_faculty_names:
+                self.display_faculty_members_by_category(dframe, 'Designation')
+                
     
         def display_table_and_download_csv(self, dframe, filename):
             st.text("\n")
@@ -155,6 +174,16 @@ if option == "Analytical data":
             )
             st.text("\n")
             st.table(dframe)
+        
+        def display_faculty_members_by_category(self, dframe, category_column):
+            for index, row in dframe.iterrows():
+                expander = st.expander(f"{row[category_column]} (Count: {row['Count']})")
+                with expander:
+                    st.write("Faculty Members:")
+                    faculty_data = self.df[self.df[category_column] == row[category_column]]
+                    for _, faculty_row in faculty_data.iterrows():
+                        st.write(f"{faculty_row['Title']} {faculty_row['First Name']} {faculty_row['Last Name']}")
+
 
     class ComputerEngineering(EntireDataset):
         def __init__(self, df):
