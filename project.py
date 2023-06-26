@@ -101,7 +101,7 @@ if option == "Analytical data":
     
         def gender_count(self):
             data = entire.count_Gender_whole(self.df)
-            st.text(data)
+            st.table(data)
     
         def department_wise_gender_count(self):
             data = entire.count_Gender_Department(self.df)
