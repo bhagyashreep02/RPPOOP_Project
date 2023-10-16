@@ -4,6 +4,7 @@ import entire_dataset as entire
 import dataset2 as dts2
 import matplotlib.pyplot as plt
 import seaborn as sns
+import altair as alt
 
 
 df1 = pd.read_csv("Faculty_data copy.csv")
@@ -952,14 +953,38 @@ elif option=='Graphical data':
 
         def faculty_doctorate_plot(self):
             doc_counts=dts2.faculty_doctorate(self.df)
-            sns.set_style('whitegrid')
-            plt.figure(figsize=(1.7, 1.7))
-            colors = sns.color_palette('bright')
-            plt.pie(doc_counts['Count'], labels=doc_counts['Doctorate Degree'], autopct='%1.1f%%', startangle=90, colors=colors)
-            plt.title('Doctorate degree-Faculty')
-            plt.axis('equal')  # Ensure the pie is drawn as a circle
-            plt.savefig('plot2.png')
-            st.pyplot(plt)
+            show_pie=st.checkbox("Piechart",False)
+            show_bar=st.checkbox("Barchart",False)
+            show_hist=st.checkbox("Histogram",False)
+            if show_pie:
+                sns.set_style('whitegrid')
+                plt.figure(figsize=(1.7, 1.7))
+                colors = sns.color_palette('bright')
+                plt.pie(doc_counts['Count'], labels=doc_counts['Doctorate Degree'], autopct='%1.1f%%', startangle=90, colors=colors)
+                plt.title('Doctorate degree-Faculty')
+                plt.axis('equal')  # Ensure the pie is drawn as a circle
+                st.pyplot(plt)
+            if show_bar:
+                st.subheader("Interactive Grouped Histogram - Distribution of Doctorate Professors")
+                chart = alt.Chart(doc_counts).mark_bar().encode(
+                x='Doctorate Degree:N',
+                y='sum(Count):Q',
+                color='Doctorate Degree:N',
+                tooltip=['sum(Count):Q']
+                ).properties(
+                width=600,
+                height=300
+                )
+                st.altair_chart(chart)
+            if show_hist:
+                sns.set_style('whitegrid')
+                plt.figure(figsize=(3,3))
+                sns.histplot(data=doc_counts, x='Doctorate Degree', weights='Count', kde=False, color='blue')
+                plt.title('Distribution of Doctorate Professors')
+                plt.xlabel('Doctorate')
+                plt.ylabel('Count')
+                plt.xticks(rotation=45, ha='center')
+                st.pyplot(plt)
 
         def faculty_pg_plot(self):
             pg1_counts=dts2.faculty_pg(self.df)
